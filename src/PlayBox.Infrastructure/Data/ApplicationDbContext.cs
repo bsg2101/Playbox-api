@@ -22,6 +22,20 @@ namespace PlayBox.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // PostgreSQL için case-sensitive davranış
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                // Tablo isimlerini küçük harfe çevir
+                entity.SetTableName(entity.GetTableName().ToLower());
+
+                // Property isimlerini küçük harfe çevir
+                foreach (var property in entity.GetProperties())
+                {
+                    property.SetColumnName(property.GetColumnName().ToLower());
+                }
+            }
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
     }

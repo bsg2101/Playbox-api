@@ -1,5 +1,11 @@
-using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using PlayBox.Application.Interfaces;
+using PlayBox.Application.Services;
+using PlayBox.Application.Mappings;
+using PlayBox.Domain.Interfaces;
+using PlayBox.Infrastructure.Data;
+using PlayBox.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +23,17 @@ builder.Services.AddSwaggerGen(c =>
         Description = "PlayBox API documentation"
     });
 });
+
+// PostgreSQL DbContext Configuration
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add AutoMapper - tek assembly referansý ile
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+// Add Services
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IContentService, ContentService>();
 
 // CORS politikasý
 builder.Services.AddCors(options =>
@@ -40,7 +57,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "PlayBox API V1");
-        c.RoutePrefix = string.Empty; // Bu satýr Swagger UI'ý root'ta gösterir
+        c.RoutePrefix = string.Empty;
     });
 }
 
