@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace PlayBox.Application.DTOs.Content
 {
-    internal class CreateContentDto
+    public record CreateContentDto
     {
+        public string Title { get; init; } = string.Empty;
+        public string Description { get; init; } = string.Empty;
+        public string ImageUrl { get; init; } = string.Empty;
+        public ICollection<CreateLinkDto> Links { get; init; } = new List<CreateLinkDto>();
     }
 }

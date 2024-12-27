@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace PlayBox.Application.DTOs.Auth
 {
-    internal class RegisterDto
-    {
-    }
+    public record RegisterDto(string UserName, string Email, string Password);
+
 }

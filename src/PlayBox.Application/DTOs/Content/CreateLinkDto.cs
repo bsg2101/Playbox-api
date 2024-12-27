@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace PlayBox.Application.DTOs.Content
 {
-    public record LinkDto
+    public record CreateLinkDto
     {
-        public Guid Id { get; init; }
         public string Title { get; init; } = string.Empty;
         public string Url { get; init; } = string.Empty;
     }

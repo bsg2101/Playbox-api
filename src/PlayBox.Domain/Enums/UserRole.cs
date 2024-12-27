@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace PlayBox.Domain.Enums
 {
-    internal class UserRole
+    public enum UserRole
     {
+        User = 0,
+        Admin = 1
     }
 }

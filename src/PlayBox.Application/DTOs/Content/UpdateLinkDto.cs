@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlayBox.Application.DTOs.Content
 {
-    public record LinkDto
+    public record UpdateLinkDto
     {
         public Guid Id { get; init; }
         public string Title { get; init; } = string.Empty;

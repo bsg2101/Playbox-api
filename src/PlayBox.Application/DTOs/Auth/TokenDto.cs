@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace PlayBox.Application.DTOs.Auth
 {
-    internal class TokenDto
-    {
-    }
+    public record TokenDto(string Token, DateTime Expiration);
 }
