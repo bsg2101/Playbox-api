@@ -14,5 +14,6 @@ namespace PlayBox.Domain.Interfaces
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(Guid id);
+        Task<T> GetByEmailAsync(string email);
     }
 }

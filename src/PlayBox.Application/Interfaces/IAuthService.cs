@@ -12,5 +12,6 @@ namespace PlayBox.Application.Interfaces
     {
         Task<ServiceResponse<TokenDto>> LoginAsync(LoginDto loginDto);
         Task<ServiceResponse<TokenDto>> RegisterAsync(RegisterDto registerDto);
+        Task<ServiceResponse<TokenDto>> RefreshTokenAsync(string refreshToken);
     }
 }

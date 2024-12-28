@@ -13,22 +13,12 @@ namespace PlayBox.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(x => x.UserName)
-                .IsRequired()
-                .HasMaxLength(50);
+            builder.Property(u => u.Email).IsRequired().HasMaxLength(100);
+            builder.Property(u => u.UserName).IsRequired().HasMaxLength(50);
+            builder.Property(u => u.PasswordHash).IsRequired();
+            builder.Property(u => u.RefreshToken).HasMaxLength(256);
 
-            builder.Property(x => x.Email)
-                .IsRequired()
-                .HasMaxLength(100);
-
-            builder.Property(x => x.PasswordHash)
-                .IsRequired();
-
-            builder.HasIndex(x => x.Email)
-                .IsUnique();
-
-            builder.HasIndex(x => x.UserName)
-                .IsUnique();
+            builder.HasIndex(u => u.Email).IsUnique();
         }
     }
 }

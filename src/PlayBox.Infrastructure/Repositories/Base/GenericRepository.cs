@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PlayBox.Domain.Entities;
 using PlayBox.Domain.Entities.Base;
 using PlayBox.Domain.Interfaces;
 using PlayBox.Infrastructure.Data;
@@ -50,6 +51,10 @@ namespace PlayBox.Infrastructure.Repositories.Base
                 entity.IsDeleted = true;
                 entity.UpdatedAt = DateTime.UtcNow;
             }
+        }
+        public async Task<T> GetByEmailAsync(string email)
+        {
+            return await _context.Set<T>().FirstOrDefaultAsync(e => (e as User).Email == email);
         }
     }
 }
